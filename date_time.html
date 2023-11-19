@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Date and Time</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+    <style>
+        body {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            /*background-color: #19A7CE;*/
+            color: #060746;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            background: linear-gradient(145deg, #03045E, #146C94);
+        }
+        .empty {
+            height: 180px;
+        }
+
+        .date-time {
+            width: 700px;
+            height: 335px;
+            border: 1px solid #a4e6f1;
+            /*border: 5px solid gold;*/
+            border-radius: 25px;
+            background: linear-gradient(145deg, #CAF0F8, #76d8ea);
+            /*box-shadow: 3px 3px 5px #aee2ed,
+                        -2px -5px 10px #76d8ea;*/
+        }
+        .time {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        span {
+            margin: 0 50px 0 50px;
+        }
+        .time {
+            margin-top: 40px;
+            font-size: 75px;
+        }
+
+        .hour, .minute, .second {
+            padding: 20px;
+            width: 250px;
+            height: 250px;
+            border-radius: 100%;
+            /*border: 2px solid black;*/
+        }
+
+        p, .hour, .minute, .second, .day{
+            background: linear-gradient(145deg, #76d8ea, #CAF0F8);
+            box-shadow: 10px 10px 40px #76d8ea,
+                        -10px -10px 40px #CAF0F8;
+        }
+        
+        p {
+            font-size: 20px;
+            width: 70px;
+            border-radius: 6px;
+            padding: 5px 0 5px 0;
+            
+        }
+        .day {
+            padding-top: 20px;
+            width: 550px;
+            height: 80px;
+            font-size: 50px;
+            border-radius: 14px;
+            font-family: 'Monsieur La Doulaise', cursive;
+            letter-spacing: 2px;
+        }
+        .message {
+            margin-top: 80px;
+            font-family: 'Monsieur La Doulaise', cursive;
+            font-size: 50px;
+            color: rgb(205, 234, 243);
+        }
+
+        @media screen and (max-width: 500px){
+            body {
+                overflow-x: hidden;
+                overflow-y: hidden;
+            }
+            .empty {
+                height: 20px;
+            }
+            .date-time{
+                width: 75%;
+                height: 600px;
+            }
+            .time {
+                flex-wrap: wrap;
+            }
+            .hour, .minute, .second{
+                height: 150px;
+                width: 150px;
+                font-size: 40px;
+            }
+            .message {
+                margin-top: 30px;
+                font-size: 20px;
+            }
+            .day {
+                width: 75%;
+                height: 8%;
+                padding-top: 10px;
+                font-size: 20px;
+                margin-bottom: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            .message {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="empty"></div>
+        <center>
+            <div class="date-time">
+                <div class="time">
+                    <div class="item item1">
+                        <span class="hour"></span>
+                        <p>hour</p>
+                    </div>
+                    <div class="item item2">
+                        <span class="minute"></span>
+                        <p>minute</p>
+                    </div>
+                    <div class="item item3">
+                        <span class="second"></span>
+                        <p>second</p>
+                    </div>
+                    
+                </div>
+                <br />
+                <div class="day"></div>
+            </div>
+
+            <div class="message">
+                <quote>"Remember, today is the tomorrow you worried about yesterday."
+
+                    — Dale Carnegie</quote>
+            </div>
+        </center>
+    </div>
+
+    
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+        let dateContainer = document.querySelector('.date');
+        let sHour = document.querySelector('.hour');
+        let sMinute = document.querySelector('.minute');
+        let sSecond = document.querySelector('.second');
+        let sDay = document.querySelector('.day');
+
+
+        setInterval(() => {
+            let date = new Date().getDate();
+            let month = new Date().getMonth();
+            let hour = new Date().getHours();
+            let minute = new Date().getMinutes();
+            let second = new Date().getSeconds();
+            let day = new Date().getDay();
+
+            sHour.innerHTML = (hour < 10 ? "0" : "") + hour;
+            sMinute.innerHTML = (minute < 10 ? "0" : "") + minute;
+            sSecond.innerHTML = (second < 10 ? "0" : "") + second;
+            
+            let day_name;
+            switch(day){
+                case 1:
+                    day_name = "Monday";
+                    break;
+                case 2:
+                    day_name = "Tuesday";
+                    break;
+                case 3:
+                    day_name = "Wednesday";
+                    break;
+                case 4:
+                    day_name = "Thursday";
+                    break;
+                case 5:
+                    day_name = "Friday";
+                    break;
+                case 6:
+                    day_name = "Saturday";
+                    break;
+                case 0:
+                    day_name = "Sunday";
+                    break;
+            }
+
+            let month_name;
+            switch(month) {
+                case 0:
+                    month_name = "January";
+                    break;
+                case 1:
+                    month_name = "February";
+                    break;
+                case 2:
+                    month_name = "March";
+                    break;
+                case 3:
+                    month_name = "April";
+                    break;
+                case 4:
+                    month_name = "May";
+                    break;
+                case 5:
+                    month_name = "June";
+                    break;
+                case 6:
+                    month_name = "July";
+                    break;
+                case 7:
+                    month_name = "August";
+                    break;
+                case 8:
+                    month_name = "September";
+                    break;
+                case 9:
+                    month_name = "October";
+                    break;
+                case 10:
+                    month_name = "November";
+                    break;
+                case 11:
+                    month_name = "December";
+                    break;
+            }
+
+            sDay.innerHTML = day_name+" "+date+" "+month_name;
+        }, 1000);
+
+    </script>
+</body>
+</html>
